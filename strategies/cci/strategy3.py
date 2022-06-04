@@ -13,10 +13,19 @@ from utils import indicators
 
 
 # CONFIG
-name = 'cci_strategy2'
+name = 'cci_strategy3'
 description = 'buy when 200 day cci threshold dips below -200'
 lookback = 200    # days
 threshold = -200    # cci points
+
+
+def get_attributes():
+    return {
+        'name': name,
+        'description': description,
+        'lookback': lookback,
+        'threshold': threshold
+    }
 
 
 def apply_strategy(input_df):

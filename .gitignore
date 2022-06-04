@@ -3,3 +3,6 @@ credentials.json
 utils/__pycache__/
 *__pycache__/
 test.csv
+output/
+assets/
+.DS_Store

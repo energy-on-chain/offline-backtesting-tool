@@ -19,6 +19,15 @@ lookback = 200    # days
 threshold = -150    # cci points
 
 
+def get_attributes():
+    return {
+        'name': name,
+        'description': description,
+        'lookback': lookback,
+        'threshold': threshold
+    }
+
+
 def apply_strategy(input_df):
 
     print('Now evaluating: {} ['.format(name) + str(datetime.datetime.utcnow()) + ']')
