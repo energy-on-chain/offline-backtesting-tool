@@ -62,9 +62,9 @@ def generate_btc_time_history_plot(input_df, name):
     # Format rest of plot
     plt.title('BTC Stack Time History: ' + name)
     plt.xlabel("Time (UTC)")
-    plt.legend()
+    # plt.legend()
 
-    plt.savefig('output/' + name + '_btc_time_history_plot.png')
+    plt.savefig('output/cci/' + name + '_btc_time_history_plot.png')
 
     return fig
 
@@ -93,9 +93,9 @@ def generate_cci_time_history_plot(input_df, name, threshold):
     # Format rest of plot
     plt.title('CCI Time History: ' + name)
     plt.xlabel("Time (UTC)")
-    plt.legend()
+    # plt.legend()
 
-    plt.savefig('output/' + name + '_cci_time_history_plot.png')
+    plt.savefig('output/cci/' + name + '_cci_time_history_plot.png')
 
     return fig
 
@@ -146,14 +146,14 @@ def generate_report(general_params, strategy_summary_dict, strategy_results_dict
         pdf.cell(75, 10, 'Strategy Description: ' + strategy_summary_dict[key]['description'], 0, 1, 'C')
 
         generate_btc_time_history_plot(value, key)
-        pdf.image('output/' + key + '_btc_time_history_plot.png', x = 40, y = None, w = 0, h = 100, type = '', link = '')
+        pdf.image('output/cci/' + key + '_btc_time_history_plot.png', x = 40, y = None, w = 0, h = 100, type = '', link = '')
 
         generate_cci_time_history_plot(value, key, strategy_summary_dict[key]['threshold'])
-        pdf.image('output/' + key + '_cci_time_history_plot.png', x = 40, y = None, w = 0, h = 100, type = '', link = '')
+        pdf.image('output/cci/' + key + '_cci_time_history_plot.png', x = 40, y = None, w = 0, h = 100, type = '', link = '')
 
 
     # OUTPUT REPORT
-    pdf.output('output/CCI_Report_' + str(datetime.datetime.today().strftime('%Y-%m-%d')) + '.pdf', 'F')
+    pdf.output('output/cci/CCI_Report_' + str(datetime.datetime.today().strftime('%Y-%m-%d')) + '.pdf', 'F')
 
 
 
