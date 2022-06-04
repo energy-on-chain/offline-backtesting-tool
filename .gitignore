@@ -1,2 +1,5 @@
 config.py
 credentials.json
+utils/__pycache__/
+*__pycache__/
+test.csv

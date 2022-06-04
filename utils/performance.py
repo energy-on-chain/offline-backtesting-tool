@@ -9,28 +9,36 @@
 # this library have been QA'd.
 ###############################################################################
 import pandas as pd
+import numpy as np
 
 
-def sharpe_ratio(df: DataFrame, strategy_returns_header: string, trading_periods: int) -> DataFrame:
-    """ Sharpe ratio evaluates the return of an investment compared to its
-    risk. This function computes the Sharpe ratio of a portfolio implementing a 
-    given trading strategy and one that just buys and holds Bitcoin over the
-    same period of time. The trading strategy results are indicated by the 
-    "strategy_returns_header" string in the input data frame. """
+def sum_capital_invested(input_df, bet, price_label, action_label):
+    """ Logs the input bet amount every time a "Buy" action occurs in the input action
+    column. Then performs a cumulative sum on those bets to determine how much capital was
+    invested over the full time history. Returns the input data frame with these two 
+    columns appended. """
 
-    # Calculate percent change between each record
-    # last input price / first input price
-    # btc only
-    # trading strategy
+    df = input_df.copy()
 
-    # Calculate annualized return (CAGR)
+    df['capital_invested'] = np.where(df[action_label] == 'Buy', bet, 0)    # log a bet every time the buy signal occurs
+    df['rolling_capital_invested'] = df['capital_invested'].cumsum()    # sum those bets over the full time history
 
-    # Assume a risk free return rate
-    risk_free_rate = 2    # percent
+    return(df)
 
-    # Calculate annualized volatility
 
-    # Calculate sharpe ratio
+def sum_btc_accumulated(input_df, bet, price_label, action_label):
+    """ Logs the BTC received every time a "Buy" action occurs in the input action
+    column. Then performs a cumulative sum on those BTC to determine how much was
+    accumulated over the full time history. Returns the input data frame with these two 
+    columns appended. """
+
+    df = input_df.copy()
+
+    df['btc_received'] = np.where(df[action_label] == 'Buy', bet / df['Close'], 0)    # tally the btc received every time a buy is made
+    df['rolling_btc_received'] = df['btc_received'].cumsum()    # sum that btc over the full time history
+
+    return(df)
+
 
 
 # TODO:

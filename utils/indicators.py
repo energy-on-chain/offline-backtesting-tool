@@ -1,7 +1,8 @@
 ###############################################################################
-# PROJECT: CVC Trading Bot
+# FILENAME: performance.py
+# CLIENT: Chainview Capital
 # AUTHOR: Matt Hartigan
-# DATE: 4-Jan-2022
+# DATE CREATED: 4-Jan-2022
 # FILENAME: indicators.py
 # DESCRIPTION: Library of indicator functions for CVC trading bots.
 ###############################################################################
@@ -53,6 +54,7 @@ def cci(input_df, high_label, low_label, close_label, rolling_window):
     for x in range(0, rolling_window):    # add a shifted typical price column for each sma period
         col_name = 'tp_shift_' + str(x)
         df[col_name] = df['typical_price'].shift(periods=x) 
+        df = df.copy()    # avoid fragmentation
 
     df['mean_deviation'] = 0    # initialize mean_deviation col
     for x in range(0, rolling_window):    # sum the abs difference between sma and prev [rolling window] typical prices
