@@ -40,7 +40,6 @@ def sum_btc_accumulated(input_df, bet, price_label, action_label):
     return(df)
 
 
-
 # TODO:
 # SHARPE RATIO
 # SORTINO RATIO
