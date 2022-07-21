@@ -1,9 +1,14 @@
 ###############################################################################
 # FILENAME: main.py
-# CLIENT: Chainview Capital
+# PROJECT: EOC Offline Backtesting Tool
+# CLIENT: 
 # AUTHOR: Matt Hartigan
 # DATE CREATED: 31 May 2022
-# DESCRIPTION: FIXME
+# DESCRIPTION: This is the main runfile for example trading strategy #1. This 
+# coordinates the loading of data, cleaning of data, application of strategy
+# logic, evaluation of performance, and creation of the results report. Multiple
+# iterations of a given strategy can be run using this same file to allow the user
+# to compare performance.
 ###############################################################################
 import os
 import importlib
@@ -20,7 +25,7 @@ from strategies.cci import report
 
 
 # CONFIG
-path = 'strategies/cci'
+path = 'strategies/example1'
 runfile_method = 'apply_strategy'
 attribute_method = 'get_attributes'
 cutoff_string = "2020-01-01"
@@ -36,10 +41,10 @@ strategy_run_list = [
 # FUNCTIONS
 def run_strategies():
 
-    print('Evaluating CCI strategy performance... [' + str(datetime.datetime.utcnow()) + ']\n')
+    print('Evaluating Example#1 strategy performance... [' + str(datetime.datetime.utcnow()) + ']\n')
 
     # LOAD DATA
-    df = pd.read_csv('gs://chainview-capital-dashboard-bucket-official/bots/bot_6/finage_ohlc_BTCUSD_60minute_fast.csv')
+    df = pd.read_csv('')    # FIXME: data feed goes here
 
     # CLEAN DATA
     df.columns = [ "Open", "High", "Low", "Close", "Volume", "Unix", "UTC"]    # rename columns
@@ -56,7 +61,7 @@ def run_strategies():
             input_df = df.copy()
 
             # APPLY STRATEGY
-            import_path = ".".join(['strategies', 'cci', strategy.replace(".py", "")])    # define the strategy module location
+            import_path = ".".join(['strategies', 'example1', strategy.replace(".py", "")])    # define the strategy module location
             module = importlib.import_module(import_path)    # import module
             run_method = getattr(module, runfile_method)    # extract run method
             attr_method = getattr(module, attribute_method)
@@ -82,4 +87,3 @@ def run_strategies():
     report.generate_report(general_params, strategy_summary_dict, strategy_results_dict)
 
     
-

@@ -1,9 +1,13 @@
 ###############################################################################
 # FILENAME: report.py
-# CLIENT: Chainview Capital
+# PROJECT: EOC Offline Backtesting Tool
+# CLIENT: 
 # AUTHOR: Matt Hartigan
 # DATE CREATED: 31 May 2022
-# DESCRIPTION: FIXME
+# DESCRIPTION: Defines the report formatting for the Example#1 trading strategy.
+# Results for multiple iterations of the strategy are kept on separate pages, 
+# and a high level summary is also included on the first page for quick comparison
+# of key performance metrics.
 ###############################################################################
 import datetime
 import pandas as pd

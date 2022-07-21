@@ -1,12 +1,11 @@
 ###############################################################################
-# FILENAME: main.py
-# PROJECT: CVC Offline Backtester
-# CLIENT: Chainview Capital
+# FILENAME: autoemail.py
+# PROJECT: EOC Offline Backtesting Tool
+# CLIENT: 
 # AUTHOR: Matt Hartigan
 # DATE CREATED: 31 May 2022
-# DESCRIPTION: This is the main runfile for the Chainview Capital offline back
-# testing system. It coordinates the evaluation of the different strategies 
-# as well as summarizing and outputting the results.
+# DESCRIPTION: Utility file tha contains functions used to send email messages
+# via python.
 ###############################################################################
 import smtplib
 from email.mime.multipart import MIMEMultipart

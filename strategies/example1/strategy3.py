@@ -1,9 +1,10 @@
 ###############################################################################
-# FILENAME: strategy1.py
-# CLIENT: Chainview Capital
+# FILENAME: strategy3.py
+# PROJECT: EOC Offline Backtesting Tool
+# CLIENT: 
 # AUTHOR: Matt Hartigan
 # DATE CREATED: 31 May 2022
-# DESCRIPTION: First strategy iteration for the CVC CCI bot.
+# DESCRIPTION: Third strategy iteration for the EOC Example #1 strategy.
 ###############################################################################
 import datetime
 import pandas as pd
@@ -13,10 +14,10 @@ from utils import indicators
 
 
 # CONFIG
-name = 'cci_strategy1'
-description = 'buy when 200 day cci threshold dips below -100'
+name = 'example_strategy3'
+description = 'buy when 200 day cci threshold dips below -200'
 lookback = 200    # days
-threshold = -100    # cci points
+threshold = -200    # cci points
 
 
 def get_attributes():

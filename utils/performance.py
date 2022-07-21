@@ -1,9 +1,10 @@
 ###############################################################################
 # FILENAME: performance.py
-# CLIENT: Chainview Capital
+# PROJECT: EOC Offline Backtesting Tool
+# CLIENT: 
 # AUTHOR: Matt Hartigan
 # DATE CREATED: 31 May 2022
-# DESCRIPTION: Library of performance evaluation functions for CVC backtester.
+# DESCRIPTION: Library of performance evaluation functions for EOC backtester.
 # Pick any one of them off the shelf, plug in the appropriate inputs, and get 
 # the specified return value(s). All functions in the production version of 
 # this library have been QA'd.

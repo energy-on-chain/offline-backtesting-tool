@@ -1,9 +1,11 @@
 ###############################################################################
 # FILENAME: batch.py
-# CLIENT: Chainview Capital
+# PROJECT: EOC Offline Backtesting Tool
+# CLIENT: 
 # AUTHOR: Matt Hartigan
-# DATE CREATED: 3-June-2022
-# DESCRIPTION: FIXME
+# DATE CREATED: 31 May 2022
+# DESCRIPTION: Defines what batch of trading strategies get run with what
+# parameters in a given session.
 ###############################################################################
 import os
 import datetime
@@ -16,7 +18,7 @@ from utils import autoemail
 
 
 # LOAD CREDENTIALS
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = ""    # FIXME: add cloud credentials here
 
 
 # CONFIG
@@ -25,13 +27,16 @@ output_directory = 'output'
 strategy_runfile_name = 'main'
 strategy_runfile_method = 'run_strategies'
 strategy_run_list = [
-    'cci',
-    # 'projectx'
+    'example1',
+    'example2',
+    # FIXME: Add other strategy types here. These need to match the subfolder names in the "strategies" directory to be recognized.
 ]
 
 
 # FUNCTIONS
 def email_results():
+""" Takes the output from the batch run, generates the appropriate pdf report with results, then emails it out to
+the recipient list defined in the project config file. """
 
     for strategy in os.listdir(strategy_directory):    # find every available strategy for testing
 
@@ -40,9 +45,9 @@ def email_results():
                 print('Emailing results report for: {}'.format(strategy) + ' [' + str(datetime.datetime.utcnow()) + ']')
 
                 # Write message
-                subject = 'CVC Offline Bactest Results: ' + strategy + ' strategy'
+                subject = 'EOC Offline Bactest Results: ' + strategy + ' strategy'
                 message = 'See attached pdf for backtest results summary.\n'
-                footer = '\nThis email was sent automatically via the Chainview Capital Offline Backtesting system.'
+                footer = '\nThis email was sent automatically via the Energy On Chain Offline Backtesting system.'
 
                 # Get attachment
                 file_list = os.listdir(os.path.join(output_directory, strategy))
@@ -58,10 +63,11 @@ def email_results():
                 payload.add_header('Content-Decomposition', 'attachment', filename=pdf_name)    # add header with pdf name
                 attachment = payload
 
-                autoemail.send_email_with_attachment(subject, message, footer, attachment)
+                autoemail.send_email_with_attachment(subject, message, footer, attachment)    # send the email
 
 
 def run_batches():
+"""" Finds and executes the 'run()' method for every strategy in the user-defined run list at the top of this file. """
 
     for strategy in os.listdir(strategy_directory):    # find every available strategy for testing
 
@@ -76,7 +82,7 @@ def run_batches():
 
 # RUN BATCH TEST
 if __name__ == '__main__':
-    print('\nStarting up the CVC Offline Backtester [' + str(datetime.datetime.utcnow()) + ']\n')
+    print('\nStarting up the EOC Offline Backtester [' + str(datetime.datetime.utcnow()) + ']\n')
     run_batches()
     email_results()
-    print('\nCVC Offline Backtester is finished running! [' + str(datetime.datetime.utcnow()) + ']\n')
+    print('\nEOC Offline Backtester is finished running! [' + str(datetime.datetime.utcnow()) + ']\n')
