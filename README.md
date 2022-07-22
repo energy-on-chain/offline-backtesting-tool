@@ -3,7 +3,7 @@
 ## [ DESCRIPTION ]
 This tool enables the user to quickly backtest multiple iterations of a trading strategy on an asset time history. Whether they are small parameter tweaks or large changes, the auto-generated (and auto-emailed), customizable performance reports make identifying the best strategy simpler. 
 
-![alt text](https://github.com/energy-on-chain/offline-backtesting-tool/blob/main/example-offline-backtest-pdf-report.png?raw=true)
+![alt text](https://github.com/energy-on-chain/offline-backtesting-tool/blob/main/assets/example-offline-backtest-pdf-report.png?raw=true)
 
 ## [ STACK ]
 - Python (key packages include pandas, numpy, fpdf, and smtplib for emails)
